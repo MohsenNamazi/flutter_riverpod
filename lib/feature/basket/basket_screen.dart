@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:circus_basket/data/model/product.dart';
 import 'package:circus_basket/feature/basket/basket_notifier.dart';
 import 'package:circus_basket/feature/basket/basket_state.dart';
 import 'package:circus_basket/feature/widgets/page_failure_placeholder.dart';
@@ -52,6 +53,15 @@ class _BasketContent extends ConsumerWidget {
       );
     }
 
+    double totalAmount = 0;
+
+    for (var element in pasketList.keys) {
+      if (element.getAnount != null) {
+        totalAmount =
+            totalAmount + (element.getAnount! * (pasketList[element] ?? 1));
+      }
+    }
+
     return Column(
       children: [
         Expanded(
@@ -60,6 +70,13 @@ class _BasketContent extends ConsumerWidget {
             itemBuilder: (context, index) {
               final product = pasketList.keys.elementAt(index);
               final count = pasketList.values.elementAt(index);
+
+              final double? price = product.getAnount;
+              final String currency = product.getCurrency;
+
+              if (price == null) {
+                return const SizedBox.shrink();
+              }
 
               return Semantics(
                 identifier: product.id,
@@ -73,6 +90,7 @@ class _BasketContent extends ConsumerWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             FloatingActionButton.small(
+                              heroTag: null,
                               elevation: 0,
                               onPressed: () =>
                                   basketNotifier.removeProduct(product),
@@ -85,6 +103,7 @@ class _BasketContent extends ConsumerWidget {
                             ),
                             const SizedBox(width: 4),
                             FloatingActionButton.small(
+                              heroTag: null,
                               elevation: 0,
                               onPressed: () =>
                                   basketNotifier.addProduct(product),
@@ -93,7 +112,7 @@ class _BasketContent extends ConsumerWidget {
                           ],
                         ),
                       ),
-                      Text(product.price),
+                      Text('$price $currency'),
                     ],
                   ),
                 ),
@@ -111,9 +130,9 @@ class _BasketContent extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Total const: ',
-                  style: TextStyle(
+                Text(
+                  'Total const: $totalAmount ${pasketList.keys.first.getCurrency}',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                   ),

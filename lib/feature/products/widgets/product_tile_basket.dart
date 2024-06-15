@@ -23,6 +23,7 @@ class ProductTileBasket extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   FloatingActionButton.small(
+                    heroTag: null,
                     elevation: 0,
                     onPressed: () => basketNotifier.removeProduct(product),
                     child: const Text('-1'),
@@ -34,6 +35,7 @@ class ProductTileBasket extends ConsumerWidget {
                   ),
                   const SizedBox(width: 4),
                   FloatingActionButton.small(
+                    heroTag: null,
                     elevation: 0,
                     onPressed: () => basketNotifier.addProduct(product),
                     child: const Text('+1'),

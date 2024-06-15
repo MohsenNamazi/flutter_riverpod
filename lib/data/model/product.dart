@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product.freezed.dart';
@@ -23,4 +24,17 @@ class ProductList with _$ProductList {
 
   factory ProductList.fromJson(Map<String, dynamic> json) =>
       _$ProductListFromJson(json);
+}
+
+extension Pricing on Product {
+  double? get getAnount {
+    try {
+      return double.parse(price.split(' ').first);
+    } catch (e) {
+      debugPrint('Could not parse product price: $e');
+    }
+    return null;
+  }
+
+  String get getCurrency => price.split(' ').last;
 }
