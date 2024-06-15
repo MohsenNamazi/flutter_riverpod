@@ -10,15 +10,16 @@ typedef BasketList = Map<Product, int>;
 sealed class BasketState with _$BasketState {
   const factory BasketState.loading() = BasketStateLoading;
   const factory BasketState.failure(Object e) = BasketStateFailure;
-  const factory BasketState.basketError(Object e, BasketList products) =
+  const factory BasketState.basketError(Object e, BasketList pasketList) =
       BasketStateBasketError;
-  const factory BasketState.products(BasketList products) = BasketStateProducts;
+  const factory BasketState.products(BasketList pasketList) =
+      BasketStateProducts;
 }
 
 extension BasketStateExtention on BasketState {
   BasketList curentProducts() => Map.of(maybeWhen(
-        products: (products) => products,
-        basketError: (e, products) => products,
+        products: (pasketList) => pasketList,
+        basketError: (e, pasketList) => pasketList,
         orElse: () => {},
       ));
 }

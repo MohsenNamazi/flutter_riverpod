@@ -28,10 +28,10 @@ class BasketScreen extends ConsumerWidget {
                   reload: () => basketNotifier.load(),
                 ),
               BasketStateFailure() => const PageLoadingPlaceholder(),
-              BasketStateBasketError(:final products) =>
-                _BasketContent(basketProducts: products),
-              BasketStateProducts(:final products) =>
-                _BasketContent(basketProducts: products),
+              BasketStateBasketError(:final pasketList) =>
+                _BasketContent(pasketList: pasketList),
+              BasketStateProducts(:final pasketList) =>
+                _BasketContent(pasketList: pasketList),
             };
           }),
     );
@@ -39,14 +39,14 @@ class BasketScreen extends ConsumerWidget {
 }
 
 class _BasketContent extends ConsumerWidget {
-  const _BasketContent({required this.basketProducts});
-  final BasketList basketProducts;
+  const _BasketContent({required this.pasketList});
+  final BasketList pasketList;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final basketNotifier = ref.read(basketNotifierProvider.notifier);
 
-    if (basketProducts.isEmpty) {
+    if (pasketList.isEmpty) {
       return const Center(
         child: Text('Basket is empty'),
       );
@@ -56,10 +56,10 @@ class _BasketContent extends ConsumerWidget {
       children: [
         Expanded(
           child: ListView.builder(
-            itemCount: basketProducts.length,
+            itemCount: pasketList.length,
             itemBuilder: (context, index) {
-              final product = basketProducts.keys.elementAt(index);
-              final count = basketProducts.values.elementAt(index);
+              final product = pasketList.keys.elementAt(index);
+              final count = pasketList.values.elementAt(index);
 
               return Semantics(
                 identifier: product.id,

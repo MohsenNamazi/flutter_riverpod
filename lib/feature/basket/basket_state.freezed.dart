@@ -20,24 +20,25 @@ mixin _$BasketState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(Object e) failure,
-    required TResult Function(Object e, Map<Product, int> products) basketError,
-    required TResult Function(Map<Product, int> products) products,
+    required TResult Function(Object e, Map<Product, int> pasketList)
+        basketError,
+    required TResult Function(Map<Product, int> pasketList) products,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(Object e)? failure,
-    TResult? Function(Object e, Map<Product, int> products)? basketError,
-    TResult? Function(Map<Product, int> products)? products,
+    TResult? Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult? Function(Map<Product, int> pasketList)? products,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Object e)? failure,
-    TResult Function(Object e, Map<Product, int> products)? basketError,
-    TResult Function(Map<Product, int> products)? products,
+    TResult Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult Function(Map<Product, int> pasketList)? products,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -126,8 +127,9 @@ class _$BasketStateLoadingImpl implements BasketStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(Object e) failure,
-    required TResult Function(Object e, Map<Product, int> products) basketError,
-    required TResult Function(Map<Product, int> products) products,
+    required TResult Function(Object e, Map<Product, int> pasketList)
+        basketError,
+    required TResult Function(Map<Product, int> pasketList) products,
   }) {
     return loading();
   }
@@ -137,8 +139,8 @@ class _$BasketStateLoadingImpl implements BasketStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(Object e)? failure,
-    TResult? Function(Object e, Map<Product, int> products)? basketError,
-    TResult? Function(Map<Product, int> products)? products,
+    TResult? Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult? Function(Map<Product, int> pasketList)? products,
   }) {
     return loading?.call();
   }
@@ -148,8 +150,8 @@ class _$BasketStateLoadingImpl implements BasketStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Object e)? failure,
-    TResult Function(Object e, Map<Product, int> products)? basketError,
-    TResult Function(Map<Product, int> products)? products,
+    TResult Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult Function(Map<Product, int> pasketList)? products,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -265,8 +267,9 @@ class _$BasketStateFailureImpl implements BasketStateFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(Object e) failure,
-    required TResult Function(Object e, Map<Product, int> products) basketError,
-    required TResult Function(Map<Product, int> products) products,
+    required TResult Function(Object e, Map<Product, int> pasketList)
+        basketError,
+    required TResult Function(Map<Product, int> pasketList) products,
   }) {
     return failure(e);
   }
@@ -276,8 +279,8 @@ class _$BasketStateFailureImpl implements BasketStateFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(Object e)? failure,
-    TResult? Function(Object e, Map<Product, int> products)? basketError,
-    TResult? Function(Map<Product, int> products)? products,
+    TResult? Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult? Function(Map<Product, int> pasketList)? products,
   }) {
     return failure?.call(e);
   }
@@ -287,8 +290,8 @@ class _$BasketStateFailureImpl implements BasketStateFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Object e)? failure,
-    TResult Function(Object e, Map<Product, int> products)? basketError,
-    TResult Function(Map<Product, int> products)? products,
+    TResult Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult Function(Map<Product, int> pasketList)? products,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -351,7 +354,7 @@ abstract class _$$BasketStateBasketErrorImplCopyWith<$Res> {
           $Res Function(_$BasketStateBasketErrorImpl) then) =
       __$$BasketStateBasketErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Object e, Map<Product, int> products});
+  $Res call({Object e, Map<Product, int> pasketList});
 }
 
 /// @nodoc
@@ -367,13 +370,13 @@ class __$$BasketStateBasketErrorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? e = null,
-    Object? products = null,
+    Object? pasketList = null,
   }) {
     return _then(_$BasketStateBasketErrorImpl(
       null == e ? _value.e : e,
-      null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
+      null == pasketList
+          ? _value._pasketList
+          : pasketList // ignore: cast_nullable_to_non_nullable
               as Map<Product, int>,
     ));
   }
@@ -382,22 +385,22 @@ class __$$BasketStateBasketErrorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
-  const _$BasketStateBasketErrorImpl(this.e, final Map<Product, int> products)
-      : _products = products;
+  const _$BasketStateBasketErrorImpl(this.e, final Map<Product, int> pasketList)
+      : _pasketList = pasketList;
 
   @override
   final Object e;
-  final Map<Product, int> _products;
+  final Map<Product, int> _pasketList;
   @override
-  Map<Product, int> get products {
-    if (_products is EqualUnmodifiableMapView) return _products;
+  Map<Product, int> get pasketList {
+    if (_pasketList is EqualUnmodifiableMapView) return _pasketList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_products);
+    return EqualUnmodifiableMapView(_pasketList);
   }
 
   @override
   String toString() {
-    return 'BasketState.basketError(e: $e, products: $products)';
+    return 'BasketState.basketError(e: $e, pasketList: $pasketList)';
   }
 
   @override
@@ -406,14 +409,15 @@ class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
         (other.runtimeType == runtimeType &&
             other is _$BasketStateBasketErrorImpl &&
             const DeepCollectionEquality().equals(other.e, e) &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality()
+                .equals(other._pasketList, _pasketList));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(e),
-      const DeepCollectionEquality().hash(_products));
+      const DeepCollectionEquality().hash(_pasketList));
 
   @JsonKey(ignore: true)
   @override
@@ -427,10 +431,11 @@ class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(Object e) failure,
-    required TResult Function(Object e, Map<Product, int> products) basketError,
-    required TResult Function(Map<Product, int> products) products,
+    required TResult Function(Object e, Map<Product, int> pasketList)
+        basketError,
+    required TResult Function(Map<Product, int> pasketList) products,
   }) {
-    return basketError(e, this.products);
+    return basketError(e, pasketList);
   }
 
   @override
@@ -438,10 +443,10 @@ class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(Object e)? failure,
-    TResult? Function(Object e, Map<Product, int> products)? basketError,
-    TResult? Function(Map<Product, int> products)? products,
+    TResult? Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult? Function(Map<Product, int> pasketList)? products,
   }) {
-    return basketError?.call(e, this.products);
+    return basketError?.call(e, pasketList);
   }
 
   @override
@@ -449,12 +454,12 @@ class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Object e)? failure,
-    TResult Function(Object e, Map<Product, int> products)? basketError,
-    TResult Function(Map<Product, int> products)? products,
+    TResult Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult Function(Map<Product, int> pasketList)? products,
     required TResult orElse(),
   }) {
     if (basketError != null) {
-      return basketError(e, this.products);
+      return basketError(e, pasketList);
     }
     return orElse();
   }
@@ -499,11 +504,11 @@ class _$BasketStateBasketErrorImpl implements BasketStateBasketError {
 
 abstract class BasketStateBasketError implements BasketState {
   const factory BasketStateBasketError(
-          final Object e, final Map<Product, int> products) =
+          final Object e, final Map<Product, int> pasketList) =
       _$BasketStateBasketErrorImpl;
 
   Object get e;
-  Map<Product, int> get products;
+  Map<Product, int> get pasketList;
   @JsonKey(ignore: true)
   _$$BasketStateBasketErrorImplCopyWith<_$BasketStateBasketErrorImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -515,7 +520,7 @@ abstract class _$$BasketStateProductsImplCopyWith<$Res> {
           $Res Function(_$BasketStateProductsImpl) then) =
       __$$BasketStateProductsImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Map<Product, int> products});
+  $Res call({Map<Product, int> pasketList});
 }
 
 /// @nodoc
@@ -529,12 +534,12 @@ class __$$BasketStateProductsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
+    Object? pasketList = null,
   }) {
     return _then(_$BasketStateProductsImpl(
-      null == products
-          ? _value._products
-          : products // ignore: cast_nullable_to_non_nullable
+      null == pasketList
+          ? _value._pasketList
+          : pasketList // ignore: cast_nullable_to_non_nullable
               as Map<Product, int>,
     ));
   }
@@ -543,20 +548,20 @@ class __$$BasketStateProductsImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$BasketStateProductsImpl implements BasketStateProducts {
-  const _$BasketStateProductsImpl(final Map<Product, int> products)
-      : _products = products;
+  const _$BasketStateProductsImpl(final Map<Product, int> pasketList)
+      : _pasketList = pasketList;
 
-  final Map<Product, int> _products;
+  final Map<Product, int> _pasketList;
   @override
-  Map<Product, int> get products {
-    if (_products is EqualUnmodifiableMapView) return _products;
+  Map<Product, int> get pasketList {
+    if (_pasketList is EqualUnmodifiableMapView) return _pasketList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_products);
+    return EqualUnmodifiableMapView(_pasketList);
   }
 
   @override
   String toString() {
-    return 'BasketState.products(products: $products)';
+    return 'BasketState.products(pasketList: $pasketList)';
   }
 
   @override
@@ -564,12 +569,13 @@ class _$BasketStateProductsImpl implements BasketStateProducts {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BasketStateProductsImpl &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality()
+                .equals(other._pasketList, _pasketList));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_pasketList));
 
   @JsonKey(ignore: true)
   @override
@@ -583,10 +589,11 @@ class _$BasketStateProductsImpl implements BasketStateProducts {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function(Object e) failure,
-    required TResult Function(Object e, Map<Product, int> products) basketError,
-    required TResult Function(Map<Product, int> products) products,
+    required TResult Function(Object e, Map<Product, int> pasketList)
+        basketError,
+    required TResult Function(Map<Product, int> pasketList) products,
   }) {
-    return products(this.products);
+    return products(pasketList);
   }
 
   @override
@@ -594,10 +601,10 @@ class _$BasketStateProductsImpl implements BasketStateProducts {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function(Object e)? failure,
-    TResult? Function(Object e, Map<Product, int> products)? basketError,
-    TResult? Function(Map<Product, int> products)? products,
+    TResult? Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult? Function(Map<Product, int> pasketList)? products,
   }) {
-    return products?.call(this.products);
+    return products?.call(pasketList);
   }
 
   @override
@@ -605,12 +612,12 @@ class _$BasketStateProductsImpl implements BasketStateProducts {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function(Object e)? failure,
-    TResult Function(Object e, Map<Product, int> products)? basketError,
-    TResult Function(Map<Product, int> products)? products,
+    TResult Function(Object e, Map<Product, int> pasketList)? basketError,
+    TResult Function(Map<Product, int> pasketList)? products,
     required TResult orElse(),
   }) {
     if (products != null) {
-      return products(this.products);
+      return products(pasketList);
     }
     return orElse();
   }
@@ -654,10 +661,10 @@ class _$BasketStateProductsImpl implements BasketStateProducts {
 }
 
 abstract class BasketStateProducts implements BasketState {
-  const factory BasketStateProducts(final Map<Product, int> products) =
+  const factory BasketStateProducts(final Map<Product, int> pasketList) =
       _$BasketStateProductsImpl;
 
-  Map<Product, int> get products;
+  Map<Product, int> get pasketList;
   @JsonKey(ignore: true)
   _$$BasketStateProductsImplCopyWith<_$BasketStateProductsImpl> get copyWith =>
       throw _privateConstructorUsedError;
