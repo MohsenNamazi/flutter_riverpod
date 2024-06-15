@@ -12,8 +12,8 @@ final appRouter = ChangeNotifierProvider((_) => AppRouter());
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(page: LoginRoute.page, initial: true, path: '/login'),
-        AutoRoute(page: ProductsRoute.page, path: '/products'),
+        AutoRoute(page: LoginRoute.page, path: '/login'),
+        AutoRoute(page: ProductsRoute.page, initial: true, path: '/products'),
         AutoRoute(page: BasketRoute.page, path: '/basket'),
       ];
 }

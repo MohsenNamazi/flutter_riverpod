@@ -3,19 +3,19 @@ import 'package:circus_basket/data/repo/basket_repository.dart';
 import 'package:circus_basket/feature/basket/basket_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final productsNotifierProvider =
-    NotifierProvider.autoDispose<ProductsNotifier, BasketState>(
-  ProductsNotifier.new,
+final basketNotifierProvider =
+    NotifierProvider.autoDispose<BasketNotifier, BasketState>(
+  BasketNotifier.new,
 );
 
-class ProductsNotifier extends AutoDisposeNotifier<BasketState> {
+class BasketNotifier extends AutoDisposeNotifier<BasketState> {
   late final _basketRepository = ref.read(basketRepositoryProvider);
 
   @override
   BasketState build() {
     Future.microtask(() => load());
 
-    throw const BasketState.loading();
+    return const BasketState.loading();
   }
 
   Future<void> load() async {
@@ -30,14 +30,14 @@ class ProductsNotifier extends AutoDisposeNotifier<BasketState> {
     }
   }
 
-  Future<void> addProduct({required Product product}) async {
-    final BasketList curentProducts = _curentProducts();
+  Future<void> addProduct(Product product) async {
+    BasketList curentProducts = state.curentProducts();
     state = const BasketState.loading();
     try {
       await _basketRepository.addProduct(product);
 
       if (curentProducts.containsKey(product)) {
-        curentProducts[product] = curentProducts[product]! + 1;
+        curentProducts.update(product, (value) => value + 1);
       } else {
         curentProducts[product] = 1;
       }
@@ -51,13 +51,13 @@ class ProductsNotifier extends AutoDisposeNotifier<BasketState> {
     }
   }
 
-  Future<void> removeProduct({required Product product}) async {
-    final BasketList curentProducts = _curentProducts();
+  Future<void> removeProduct(Product product) async {
+    BasketList curentProducts = state.curentProducts();
     state = const BasketState.loading();
     try {
       await _basketRepository.addProduct(product);
 
-      curentProducts[product] = curentProducts[product]! - 1;
+      curentProducts.update(product, (value) => value - 1);
 
       if (curentProducts[product] == 0) {
         curentProducts.remove(product);
@@ -71,10 +71,4 @@ class ProductsNotifier extends AutoDisposeNotifier<BasketState> {
       );
     }
   }
-
-  BasketList _curentProducts() => state.maybeWhen(
-        products: (products) => products,
-        basketError: (e, products) => products,
-        orElse: () => {},
-      );
 }

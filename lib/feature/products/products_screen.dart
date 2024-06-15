@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:circus_basket/app_router.dart';
 import 'package:circus_basket/data/model/product.dart';
 import 'package:circus_basket/feature/products/products_notifier.dart';
+import 'package:circus_basket/feature/products/widgets/app_bar_basket.dart';
+import 'package:circus_basket/feature/products/widgets/product_tile_basket.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,10 +17,7 @@ class ProductsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hallo, ${state.user}'),
-        leading: IconButton(
-          icon: const Icon(Icons.shopping_basket_outlined),
-          onPressed: () => ref.read(appRouter).push(const BasketRoute()),
-        ),
+        leading: const AppBarBasket(),
         actions: [
           IconButton.outlined(
             onPressed: () =>
@@ -53,7 +51,14 @@ class _Content extends ConsumerWidget {
           child: ListTile(
             title: Text(product.name),
             subtitle: Text(product.description ?? ''),
-            trailing: Text(product.price),
+            trailing: Column(
+              children: [
+                Expanded(
+                  child: ProductTileBasket(product: product),
+                ),
+                Text(product.price),
+              ],
+            ),
           ),
         );
       },

@@ -14,3 +14,11 @@ sealed class BasketState with _$BasketState {
       BasketStateBasketError;
   const factory BasketState.products(BasketList products) = BasketStateProducts;
 }
+
+extension BasketStateExtention on BasketState {
+  BasketList curentProducts() => Map.of(maybeWhen(
+        products: (products) => products,
+        basketError: (e, products) => products,
+        orElse: () => {},
+      ));
+}
