@@ -3,6 +3,8 @@ import 'package:circus_basket/data/model/product.dart';
 import 'package:circus_basket/feature/products/products_notifier.dart';
 import 'package:circus_basket/feature/products/widgets/app_bar_basket.dart';
 import 'package:circus_basket/feature/products/widgets/product_tile_basket.dart';
+import 'package:circus_basket/feature/widgets/page_failure_placeholder.dart';
+import 'package:circus_basket/feature/widgets/page_loading_placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -27,8 +29,11 @@ class ProductsScreen extends ConsumerWidget {
         ],
       ),
       body: switch (state) {
-        ProductsStateFailure() => const _Failure(),
-        ProductsStateLoading() => const _Loading(),
+        ProductsStateFailure() => PageFailurePlaceholder(
+            text: 'Failed to load products',
+            reload: () => ref.read(productsNotifierProvider.notifier).load(),
+          ),
+        ProductsStateLoading() => const PageLoadingPlaceholder(),
         ProductsStateProducts(:final products) => _Content(products: products)
       },
     );
@@ -62,35 +67,6 @@ class _Content extends ConsumerWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _Loading extends StatelessWidget {
-  const _Loading();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
-  }
-}
-
-class _Failure extends ConsumerWidget {
-  const _Failure();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    return Center(
-      child: Column(
-        children: [
-          const Text('Failed to load products'),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            onPressed: () => ref.read(productsNotifierProvider.notifier).load(),
-            child: const Text('Retry'),
-          ),
-        ],
-      ),
     );
   }
 }
