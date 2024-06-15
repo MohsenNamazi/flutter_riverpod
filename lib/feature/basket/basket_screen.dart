@@ -28,9 +28,10 @@ class BasketScreen extends ConsumerWidget {
                   reload: () => basketNotifier.load(),
                 ),
               BasketStateFailure() => const PageLoadingPlaceholder(),
-              BasketStateBasketError(:final basketProducts) =>
-                _BasketContent(basketProducts: basketProducts),
-              BasketStateProducts() => const PageLoadingPlaceholder(),
+              BasketStateBasketError(:final products) =>
+                _BasketContent(basketProducts: products),
+              BasketStateProducts(:final products) =>
+                _BasketContent(basketProducts: products),
             };
           }),
     );
@@ -44,6 +45,12 @@ class _BasketContent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
     final basketNotifier = ref.read(basketNotifierProvider.notifier);
+
+    if (basketProducts.isEmpty) {
+      return const Center(
+        child: Text('Basket is empty'),
+      );
+    }
 
     return Column(
       children: [
