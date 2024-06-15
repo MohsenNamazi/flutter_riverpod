@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:circus_basket/app_router.dart';
 import 'package:circus_basket/data/model/product.dart';
 import 'package:circus_basket/feature/products/products_notifier.dart';
 import 'package:flutter/material.dart';
@@ -32,13 +33,13 @@ class ProductsScreen extends ConsumerWidget {
   }
 }
 
-class _Content extends StatelessWidget {
+class _Content extends ConsumerWidget {
   const _Content({required this.products});
 
   final List<Product> products;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {
@@ -49,6 +50,9 @@ class _Content extends StatelessWidget {
             title: Text(product.name),
             subtitle: Text(product.description ?? ''),
             trailing: Text(product.price),
+            onTap: () async {
+              await ref.read(appRouter).push(const BasketRoute());
+            },
           ),
         );
       },

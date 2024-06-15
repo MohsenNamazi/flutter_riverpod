@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:circus_basket/feature/basket/basket_screen.dart';
 import 'package:circus_basket/feature/login/login_screen.dart';
 import 'package:circus_basket/feature/products/products_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,5 +14,6 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         AutoRoute(page: LoginRoute.page, initial: true, path: '/login'),
         AutoRoute(page: ProductsRoute.page, path: '/products'),
+        AutoRoute(page: BasketRoute.page, path: '/basket'),
       ];
 }
