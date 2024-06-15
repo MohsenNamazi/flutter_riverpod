@@ -16,6 +16,10 @@ class ProductsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Hallo, ${state.user}'),
+        leading: IconButton(
+          icon: const Icon(Icons.shopping_basket_outlined),
+          onPressed: () => ref.read(appRouter).push(const BasketRoute()),
+        ),
         actions: [
           IconButton.outlined(
             onPressed: () =>
@@ -50,9 +54,6 @@ class _Content extends ConsumerWidget {
             title: Text(product.name),
             subtitle: Text(product.description ?? ''),
             trailing: Text(product.price),
-            onTap: () async {
-              await ref.read(appRouter).push(const BasketRoute());
-            },
           ),
         );
       },
