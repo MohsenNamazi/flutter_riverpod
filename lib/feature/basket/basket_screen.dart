@@ -53,7 +53,7 @@ class _BasketContent extends ConsumerWidget {
       );
     }
 
-    //TODO: discuss what if we have different currencies?
+    //TODO(Mohsen): discuss what if we have different currencies?
     double totalAmount = 0;
 
     for (var element in pasketList.keys) {

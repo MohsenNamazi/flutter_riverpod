@@ -6,6 +6,8 @@ void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
 
+// TODO: Prevent to use the hardcoded color, size, text-theme
+// TODO(Mohsen): Use l10n
 class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
