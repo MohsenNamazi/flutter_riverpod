@@ -75,6 +75,8 @@ class _BasketContent extends ConsumerWidget {
               final double? price = product.getAnount;
               final String currency = product.getCurrency;
 
+              final isMaxCount = count == product.maxBasketCount;
+
               if (price == null) {
                 return const SizedBox.shrink();
               }
@@ -105,9 +107,17 @@ class _BasketContent extends ConsumerWidget {
                             const SizedBox(width: 4),
                             FloatingActionButton.small(
                               heroTag: null,
+                              backgroundColor: isMaxCount ? Colors.grey : null,
                               elevation: 0,
-                              onPressed: () =>
-                                  basketNotifier.addProduct(product),
+                              onPressed: () {
+                                !isMaxCount
+                                    ? basketNotifier.addProduct(product)
+                                    : ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                        content: Text(
+                                            "${product.name} has max count"),
+                                      ));
+                              },
                               child: const Text('+1'),
                             ),
                           ],

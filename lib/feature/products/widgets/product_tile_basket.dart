@@ -18,6 +18,7 @@ class ProductTileBasket extends ConsumerWidget {
       builder: (context, basketState) {
         final curentProducts = basketState.curentProducts();
         final isProductAdded = curentProducts.containsKey(product);
+        final isMaxCount = curentProducts[product] == product.maxBasketCount;
         return isProductAdded
             ? Row(
                 mainAxisSize: MainAxisSize.min,
@@ -37,7 +38,14 @@ class ProductTileBasket extends ConsumerWidget {
                   FloatingActionButton.small(
                     heroTag: null,
                     elevation: 0,
-                    onPressed: () => basketNotifier.addProduct(product),
+                    backgroundColor: isMaxCount ? Colors.grey : null,
+                    onPressed: () {
+                      !isMaxCount
+                          ? basketNotifier.addProduct(product)
+                          : ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("${product.name} has max count"),
+                            ));
+                    },
                     child: const Text('+1'),
                   ),
                 ],
