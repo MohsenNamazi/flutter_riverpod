@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+/// [ProviderListener] Can get used on the widget tree to listen to the provider
 class ProviderListener<S> extends ConsumerWidget {
   const ProviderListener({
     required this.listenableProvider,

@@ -14,10 +14,13 @@ class AppBarBasket extends ConsumerWidget {
       provider: basketNotifierProvider,
       builder: (context, basketState) {
         final basketProductsLength = basketState.curentProducts().length;
-        int count = 0;
-        basketState.curentProducts().forEach((key, value) {
-          count = count + value;
-        });
+        final count = basketState.curentProducts().length;
+
+        // Use this code if you need to increase the basket count by
+        // increasing the count of item.
+        // basketState.curentProducts().forEach((key, value) {
+        //   count = count + value;
+        // });
         final countText = count > 9 ? '9+' : count.toString();
         return Stack(
           children: [

@@ -18,6 +18,7 @@ class BasketNotifier extends AutoDisposeNotifier<BasketState> {
     return const BasketState.loading();
   }
 
+  // Load all the basket items
   Future<void> load() async {
     state = const BasketState.loading();
     try {
@@ -30,6 +31,7 @@ class BasketNotifier extends AutoDisposeNotifier<BasketState> {
     }
   }
 
+  // Add a product to the basket
   Future<void> addProduct(Product product) async {
     BasketList curentProducts = state.curentProducts();
     state = const BasketState.loading();
@@ -51,6 +53,7 @@ class BasketNotifier extends AutoDisposeNotifier<BasketState> {
     }
   }
 
+  // Remove a product from the basket
   Future<void> removeProduct(Product product) async {
     BasketList curentProducts = state.curentProducts();
     state = const BasketState.loading();
