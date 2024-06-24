@@ -23,13 +23,6 @@ class ProductsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: Text('Hallo, ${state.user}'),
         leading: const AppBarBasket(),
-        actions: [
-          IconButton.outlined(
-            onPressed: () =>
-                ref.read(productsNotifierProvider.notifier).logout(),
-            icon: const Icon(Icons.logout),
-          ),
-        ],
       ),
       body: switch (state) {
         ProductsStateFailure() => PageFailurePlaceholder(

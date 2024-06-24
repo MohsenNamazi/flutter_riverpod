@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:circus_basket/app_router.dart';
 import 'package:circus_basket/data/model/product.dart';
 import 'package:circus_basket/data/model/user.dart';
 import 'package:circus_basket/data/repo/products_repository.dart';
@@ -18,7 +17,6 @@ final productsNotifierProvider =
 class ProductsNotifier extends AutoDisposeNotifier<ProductsState> {
   late final _userRepository = ref.read(userRepositoryProvider);
   late final _productsRepository = ref.read(productsRepositoryProvider);
-  late final _appRouter = ref.read(appRouter);
 
   StreamSubscription<User?>? _userSubscription;
 
@@ -34,11 +32,6 @@ class ProductsNotifier extends AutoDisposeNotifier<ProductsState> {
 
     Future.microtask(() => load());
     return ProductsState.loading(_userRepository.currentUser?.name ?? '');
-  }
-
-  Future<void> logout() async {
-    await _userRepository.logout(); // Currently, will never fail.
-    _appRouter.replaceAll(const [LoginRoute()]);
   }
 
   Future<void> load() async {
